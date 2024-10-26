@@ -1,0 +1,7 @@
+table_sample_merge:
+  "Read 1":
+    - type: regex
+      pattern: "_1$"
+  "Read 2":
+    - type: regex
+      pattern: "_2$"
