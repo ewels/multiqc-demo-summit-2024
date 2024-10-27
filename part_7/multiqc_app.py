@@ -20,7 +20,7 @@ st.title("MultiQC Streamlit App")
 
 
 # Parse logs
-@st.cache_resource()
+@st.cache_data(persist="disk")
 def parse_data():
     multiqc.parse_logs(DATA_PATH)
 
@@ -35,7 +35,7 @@ def parse_data():
 
 
 # Show a plot
-@st.cache_resource()
+@st.cache_data(persist="disk")
 def create_plot():
     st.header("fastp plot")
     st.write("This is MultiQC plot from the parsed data.")
@@ -52,7 +52,7 @@ def create_plot():
 
 
 # Add a plot with some custom data
-@st.cache_resource()
+@st.cache_data(persist="disk")
 def custom_plot(data):
     module = multiqc.BaseMultiqcModule(
         anchor="my_metrics",
@@ -78,7 +78,7 @@ def custom_plot(data):
     multiqc.report.modules.append(module)
 
 
-@st.cache_resource()
+@st.cache_data(persist="disk")
 def create_report():
     multiqc.write_report(force=True, output_dir="multiqc_report")
     html_data = open("multiqc_report/multiqc_report.html").read()
